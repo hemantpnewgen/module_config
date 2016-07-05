@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Assignment#2</title>
+	<script type="text/javascript" src=https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular-route.js"></script>
+	<script src="https://code.angularjs.org/1.5.7/angular-route.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script type="text/javascript">
+			 var mod = angular.module("App", ['ngRoute']);
+    mod.config(['$routeProvider',
+        function($routeProvider) {
+            $routeProvider.
+                    when('/route1/:param', {                    //Route1
+                        templateUrl: 'view1.html',
+                        controller: 'Routec'
+                    }).
+                    when('/route2/:param', {                    //Route2
+                        templateUrl: 'view2.html',
+                        controller: 'Routec'
+                    }).
+                    when('/route3/:param',{                    //Route3
+                    	templateUrl:'view3.html',
+                        controller:'Routec'
+                    }).
+                    when('/route4/:param',{                    //Route4
+                    	templateUrl:'view4.html',
+                        controller:'Routec'
+                    }).
+                    otherwise({                                 //Default Route
+                        redirectTo: '/',
+                        templateUrl:'alternate.html',
+                        controller:'Indxc'
+                    });
+        }]);
+
+    mod.controller("Routec", function($scope, $routeParams) {
+        $scope.param = $routeParams.param;
+    })
+    .controller('Indxc',function($scope){
+        $scope.message = "Prison Break";
+    })
+	</script>
+</head>
+<body ng-app="App" container>
+    <h2>Prison Break</h2>
+    <div ng-view></div><br><br>
+	<a href="#/route1/param1">Season 1</a>
+	<a href="#/route2/param2">Season 2</a>
+	<a href="#/route3/param3">Season 3</a>
+	<a href="#/route4/param4">Season 4</a>
+
+</body>
+</html>
